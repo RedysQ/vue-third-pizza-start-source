@@ -10,7 +10,14 @@
         />
       </a>
     </div>
+    <div class="header__cart">
+      <a href="#">0 ₽</a>
+    </div>
+    <div class="header__user">
+      <a href="#" class="header__login"><span>Войти</span></a>
+    </div>
   </header>
+
 </template>
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
@@ -147,3 +154,5 @@
   }
 }
 </style>
+<script setup lang="ts">
+</script>
