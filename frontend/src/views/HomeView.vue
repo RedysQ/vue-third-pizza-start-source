@@ -192,6 +192,25 @@ const getImage = image => {
   padding-left: 2.12%;
 }
 
+.visually-hidden {
+  position: absolute;
+
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  white-space: nowrap;
+
+  border: 0;
+
+  clip-path: inset(100%);
+}
+
+
 .content__dough {
   width: 527px;
   margin-top: 15px;
