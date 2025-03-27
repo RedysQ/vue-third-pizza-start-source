@@ -8,15 +8,15 @@
           v-for="sizeType in items"
           :key="sizeType.id"
           class="diameter__input"
-          :class="`diameter__input--${sizeType.value}`"
+          :class="`diameter__input--${sizeType.id}`"
         >
           <input
             type="radio"
             name="diameter"
-            :value="sizeType.value"
-            :checked="sizeType.value === modelValue"
+            :value="sizeType.id"
+            :checked="sizeType.id === modelValue"
             class="visually-hidden"
-            @input="emit('update:modelValue', sizeType.value)"
+            @input="emit('update:modelValue', sizeType.id)"
           />
           <span>{{ sizeType.name }}</span>
         </label>
@@ -28,8 +28,8 @@
 <script setup>
 defineProps({
   modelValue: {
-    type: String,
-    default: "",
+    type: Number,
+    required: true,
   },
   items: {
     type: Array,
@@ -55,18 +55,25 @@ const emit = defineEmits(["update:modelValue"]);
   margin-bottom: 20px;
   padding-top: 7px;
   padding-bottom: 6px;
+
   cursor: pointer;
 
   span {
     @include r-s16-h19;
+
     position: relative;
+
     padding-left: 46px;
+
     &::before {
       @include p_center_v;
+
       width: 36px;
       height: 36px;
+
       content: "";
       transition: 0.3s;
+
       border-radius: 50%;
       background-color: $green-100;
       background-image: url("@/assets/img/diameter.svg");
@@ -78,7 +85,7 @@ const emit = defineEmits(["update:modelValue"]);
   &:nth-child(3n) {
     margin-right: 0;
   }
-   
+
   &--small {
     span::before {
       background-size: 18px;
