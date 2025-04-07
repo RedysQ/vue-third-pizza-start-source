@@ -3,7 +3,7 @@ import { ingredientsQuantity } from "@/common/helpers/ingredients-quantity";
 import { pizzaPrice } from "@/common/helpers/pizza-price";
 import { useDataStore } from "@/stores/data";
 
-export const usePizzaStore = defineStore("pizza", {
+export const usePizzaStore = defineStore("columns", {
   state: () => ({
     index: null,
     name: "",
@@ -115,5 +115,5 @@ export const usePizzaStore = defineStore("pizza", {
       this.sizeId = pizza.sizeId;
       this.ingredients = pizza.ingredients;
     },
-  }
+  },
 });

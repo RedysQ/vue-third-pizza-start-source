@@ -1,12 +1,12 @@
 <template>
-  <main class="content">
+  <main v-if="dataStore.isDataLoaded" class="content">
     <form action="#" method="post">
       <div class="content__wrapper">
         <h1 class="title title--big">Конструктор пиццы</h1>
 
-        <dough-selector v-model="doughId" :items="dataStore.doughs" />
+        <app-dough v-model="doughId" :dough-items="dataStore.doughs" />
 
-        <diameter-selector v-model="sizeId" :items="dataStore.sizes" />
+        <app-diameter v-model="sizeId" :size-items="dataStore.sizes" />
 
         <div class="content__ingredients">
           <div class="sheet">
@@ -15,11 +15,14 @@
             </h2>
 
             <div class="sheet__content ingredients">
-              <sauce-selector v-model="sauceId" :items="dataStore.sauces" />
+              <app-ingredients-sauce
+                v-model="sauceId"
+                :sauce-items="dataStore.sauces"
+              />
 
-              <ingredients-selector
+              <app-ingredients-filling
                 :values="pizzaStore.ingredientQuantities"
-                :items="dataStore.ingredients"
+                :ingredient-items="dataStore.ingredients"
                 @update="pizzaStore.setIngredientQuantity"
               />
             </div>
@@ -37,7 +40,7 @@
             />
           </label>
 
-          <pizza-constructor
+          <app-pizza
             :dough="pizzaStore.dough.value"
             :sauce="pizzaStore.sauce.value"
             :ingredients="pizzaStore.ingredientsExtended"
@@ -63,11 +66,11 @@
 
 <script setup>
 import { computed, onMounted } from "vue";
-import DoughSelector from "@/modules/constructor/DoughSelector.vue";
-import DiameterSelector from "@/modules/constructor/DiameterSelector.vue";
-import SauceSelector from "@/modules/constructor/SauceSelector.vue";
-import IngredientsSelector from "@/modules/constructor/IngredientsSelector.vue";
-import PizzaConstructor from "@/modules/constructor/PizzaConstructor.vue";
+import AppDough from "@/modules/constructor/AppDough.vue";
+import AppDiameter from "@/modules/constructor/AppDiameter.vue";
+import AppIngredientsSauce from "@/modules/constructor/AppIngredientsSauce.vue";
+import AppIngredientsFilling from "@/modules/constructor/AppIngredientsFilling.vue";
+import AppPizza from "@/modules/constructor/AppPizza.vue";
 import { usePizzaStore } from "@/stores/pizza";
 import { useDataStore } from "@/stores/data";
 import { useCartStore } from "@/stores/cart";
@@ -119,7 +122,7 @@ const disableSubmit = computed(() => {
   return name.value.length === 0 || pizzaStore.price === 0;
 });
 
-const addToCart = async () => {  
+const addToCart = async () => {
   cartStore.savePizza(pizzaStore.$state);
   await router.push({ name: "cart" });
   resetPizza();
@@ -127,9 +130,11 @@ const addToCart = async () => {
 
 const resetPizza = () => {
   pizzaStore.setName("");
-  pizzaStore.setDough(dataStore.doughs[0].id);
-  pizzaStore.setSize(dataStore.sizes[0].id);
-  pizzaStore.setSauce(dataStore.sauces[0].id);
+  if (dataStore.isDataLoaded) {
+    pizzaStore.setDough(dataStore.doughs[0].id);
+    pizzaStore.setSize(dataStore.sizes[0].id);
+    pizzaStore.setSauce(dataStore.sauces[0].id);
+  }
   pizzaStore.setIngredients([]);
   pizzaStore.setIndex(null);
 };
@@ -144,7 +149,6 @@ onMounted(() => {
 <style lang="scss">
 @import "@/assets/scss/ds-system/ds.scss";
 @import "@/assets/scss/mixins/mixins.scss";
-
 .content__ingredients {
   width: 527px;
   margin-top: 15px;
