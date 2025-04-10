@@ -59,11 +59,11 @@ export class ApiService {
   }
 
   $get(url) {
-    return this._wrapper1(axios.get, url)();
+    return this._wrapper1(axios.get.bind(axios), url)();
   }
 
   $post(url, payload) {
-    return this._wrapper2(axios.post, url, payload)();
+    return this._wrapper2(axios.post.bind(axios), url, payload)();
   }
 
   $put(url, payload) {

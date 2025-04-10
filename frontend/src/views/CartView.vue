@@ -196,8 +196,6 @@ const cartStore = useCartStore();
 const pizzaStore = usePizzaStore();
 const profileStore = useProfileStore();
 
-console.log(cartStore.pizzasExtended);
-
 const router = useRouter();
 
 const deliveryOption = ref(-1);

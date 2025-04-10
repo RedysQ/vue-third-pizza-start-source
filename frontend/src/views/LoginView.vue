@@ -6,15 +6,15 @@
     <div class="sign-form__title">
       <h1 class="title title--small">Авторизуйтесь на сайте</h1>
     </div>
-    <form method="post" @submit.prevent="login">
+    <form @submit.prevent="login">
       <div class="sign-form__input">
         <label class="input">
           <span>E-mail</span>
           <input
-            v-model="email"
-            type="email"
-            name="email"
-            placeholder="example@mail.ru"
+              v-model="email"
+              type="email"
+              name="email"
+              placeholder="example@mail.ru"
           />
         </label>
         <div class="sign-form__input-error">
@@ -26,10 +26,10 @@
         <label class="input">
           <span>Пароль</span>
           <input
-            v-model="password"
-            type="password"
-            name="pass"
-            placeholder="***********"
+              v-model="password"
+              type="password"
+              name="pass"
+              placeholder="***********"
           />
         </label>
         <div class="sign-form__input-error">
@@ -114,16 +114,21 @@ const login = async () => {
 
 .sign-form {
   @include pf_center-all;
+
   z-index: 10;
+
   display: block;
+
   box-sizing: border-box;
   width: 455px;
   padding-top: 146px;
   padding-right: 32px;
   padding-bottom: 32px;
   padding-left: 32px;
+
   background: $white url("/api/public/img/popup.svg") no-repeat center top;
   box-shadow: $shadow-light;
+
   button {
     margin: 0 auto;
     padding: 16px 14px;
@@ -132,6 +137,7 @@ const login = async () => {
 
 .sign-form__title {
   margin-bottom: 24px;
+
   text-align: center;
 }
 
@@ -143,11 +149,14 @@ const login = async () => {
   position: absolute;
   top: 16px;
   right: 16px;
+
   width: 25px;
   height: 25px;
+
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
+
   color: $black;
   border-radius: 50%;
   outline: none;
@@ -157,8 +166,10 @@ const login = async () => {
     position: absolute;
     top: 50%;
     left: 50%;
+
     width: 25px;
     height: 2px;
+
     content: "";
 
     border-radius: 2px;

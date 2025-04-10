@@ -87,12 +87,12 @@ const updateAddress = (address, data) => {
 
 .user__name {
   @include b-s20-h23;
-  
+
   margin-left: 30px;
 
   span {
     display: inline-block;
-    
+
     vertical-align: middle;
   }
 }
@@ -118,15 +118,15 @@ const updateAddress = (address, data) => {
 .layout__address {
   :deep(.address-form) {
     $bl: &;
-    
+
     position: relative;
-    
+
     padding-top: 0;
     padding-bottom: 26px;
-    
+
     p {
       @include r-s16-h19;
-      
+
       margin-top: 0;
       margin-bottom: 16px;
       padding: 0 16px;
@@ -134,9 +134,9 @@ const updateAddress = (address, data) => {
 
     small {
       @include l-s11-h13;
-      
+
       display: block;
-      
+
       padding: 0 16px;
     }
   }
@@ -149,16 +149,15 @@ const updateAddress = (address, data) => {
 
   :deep(.address-form__header) {
     @include b-s14-h16;
-    
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
     margin-bottom: 21px;
     padding: 10px 16px;
-    
+
     border-bottom: 1px solid rgba($green-500, 0.1);
   }
 }
 </style>
-
